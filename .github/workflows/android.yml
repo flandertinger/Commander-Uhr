@@ -25,11 +25,12 @@ jobs:
 
       - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
-
-      - name: Android SDK installieren
-        run: |
-          yes | sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+        with:
+          packages: |
+            platform-tools
+            platforms;android-35
+            build-tools;35.0.0
+          accept-android-sdk-licenses: true
 
       - name: APK bauen
         run: gradle assembleDebug
